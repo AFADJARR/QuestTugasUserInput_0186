@@ -113,7 +113,7 @@ fun BiodataScreen(menuAnchor: Modifier.Companion.() -> Unit, fillMaxWidth: Unit.
             innerPadding ->
         Box(
             modifier = Modifier.fillMaxSize().padding(innerPadding)
-        ){
+        ) {
             Image(
                 painter = painterResource(R.drawable.image),
                 contentDescription = stringResource(R.string.cd_background),
@@ -122,7 +122,7 @@ fun BiodataScreen(menuAnchor: Modifier.Companion.() -> Unit, fillMaxWidth: Unit.
                     .fillMaxWidth()
                     .fillMaxHeight(imageHeightFraction)
                     .align(Alignment.TopCenter)
-                    )
+            )
             Box(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
@@ -226,7 +226,7 @@ fun BiodataScreen(menuAnchor: Modifier.Companion.() -> Unit, fillMaxWidth: Unit.
                             expanded = expandedExperience,
                             onExpandedChange = { expandedExperience = it },
                             modifier = Modifier.weight(fieldWeight)
-                        ){
+                        ) {
                             OutlinedTextField(
                                 value = experience,
                                 onValueChange = {},
@@ -254,10 +254,10 @@ fun BiodataScreen(menuAnchor: Modifier.Companion.() -> Unit, fillMaxWidth: Unit.
                                             expandedExperience = false
                                         }
                                     )
+                                }
+                            }
+                        }
                     }
-                }
-            }
-        }
                     Spacer(Modifier.height(dimensionResource(R.dimen.section_gap)))
 
                     Text(
@@ -325,11 +325,60 @@ fun BiodataScreen(menuAnchor: Modifier.Companion.() -> Unit, fillMaxWidth: Unit.
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(dimensionResource(R.dimen.button_height))
-                    ){
+                    ) {
                         Text(
                             text = stringResource(R.string.btn_proceed),
                             fontWeight = FontWeight.Bold
                         )
                     }
+                    if (tampilHasil) {
+                        Spacer(Modifier.height(dimensionResource(R.dimen.section_gap)))
+                        HorizontalDivider(
+                            thickness = dimensionResource(R.dimen.divider_tipis),
+                            color = colorResource(R.color.field_border)
+                        )
+                        Spacer(Modifier.height(dimensionResource(R.dimen.section_gap)))
+                        ElevatedCard(
+                            shape = resultShape,
+                            elevation = CardDefaults.cardElevation(
+                                defaultElevation = dimensionResource(R.dimen.result_elevation)
+                            ),
+                            colors = CardDefaults.cardColors(
+                                containerColor = colorResource(R.color.black)
+                            ),
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Column(modifier = Modifier.padding(dimensionResource(R.dimen.result_padding))) {
+                                Text(
+                                    text = stringResource(
+                                        R.string.hasil_nama,
+                                        namaDepan,
+                                        namaBelakang
+                                    ),
+                                    color = colorResource(R.color.white)
+                                )
+                                Text(
+                                    text = stringResource(R.string.hasil_email, email),
+                                    color = colorResource(R.color.white)
+                                )
+                                Text(
+                                    text = stringResource(R.string.hasil_tgl, tglLahir),
+                                    color = colorResource(R.color.white)
+                                )
+                                Text(
+                                    text = stringResource(R.string.hasil_experience, experience),
+                                    color = colorResource(R.color.white)
+                                )
+                                Text(
+                                    text = stringResource(R.string.hasil_skill, skillTerpilih),
+                                    color = colorResource(R.color.white)
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
+
 }
