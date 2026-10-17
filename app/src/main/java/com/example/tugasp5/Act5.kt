@@ -29,4 +29,10 @@ fun BiodataScreen(){
     val datePickerState = rememberDatePickerState()
     val experienceOptions = stringArrayResource(R.array.experience_options)
     val dateFormat = SimpleDateFormat(stringResource(R.string.format_tanggal), Locale.getDefault())
+
+    val skillKosong = stringResource(R.string.hasil_skill_kosong)
+    val pemisahSkill = stringResource(R.string.pemisah_skill)
+    val teksAndroid = stringResource(R.string.skill_android)
+    val teksUiUx = stringResource(R.string.skill_uiux)
+    val teksWeb = stringResource(R.string.skill_web)
 }
