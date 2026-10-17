@@ -35,4 +35,14 @@ fun BiodataScreen(){
     val teksAndroid = stringResource(R.string.skill_android)
     val teksUiUx = stringResource(R.string.skill_uiux)
     val teksWeb = stringResource(R.string.skill_web)
+    val skillTerpilih = listOfNotNull(
+        teksAndroid.takeIf { skillAndroid },
+        teksUiUx.takeIf { skillUiUx },
+        teksWeb.takeIf { skillWeb }
+    ).joinToString(pemisahSkill).ifEmpty { skillKosong }
+
+    val formValid = namaDepan.isNotBlank() &&
+            namaBelakang.isNotBlank() &&
+            email.isNotBlank() &&
+            tglLahir.isNotBlank() &&
 }
