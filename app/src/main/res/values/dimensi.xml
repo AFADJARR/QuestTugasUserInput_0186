@@ -15,4 +15,7 @@
     <dimen name="result_elevation">8dp</dimen>
     <dimen name="result_padding">12dp</dimen>
 
+    <item name="image_height_fraction" format="float" type="dimen">0.4</item>
+    <item name="card_height_fraction" format="float" type="dimen">0.75</item>
+    <item name="field_weight" format="float" type="dimen">1.0</item>
 </resources>
