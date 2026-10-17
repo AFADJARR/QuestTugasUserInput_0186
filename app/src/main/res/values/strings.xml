@@ -17,4 +17,7 @@
     <string name="cd_pilih_tanggal">Pilih tanggal lahir</string>
     <string name="dialog_ok">OK</string>
     <string name="dialog_batal">Batal</string>
+
+    <string name="hasil_nama">Nama : %1$s %2$s</string>
+
 </resources>
