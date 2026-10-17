@@ -14,7 +14,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CheckboxDefaults
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -42,7 +45,7 @@ import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BiodataScreen(){
+fun BiodataScreen(menuAnchor: Modifier.Companion.() -> Unit, fillMaxWidth: Unit.() -> Unit) {
     var namaDepan by remember { mutableStateOf(String()) }
     var namaBelakang by remember { mutableStateOf(String()) }
     var email by remember { mutableStateOf(String()) }
@@ -217,7 +220,34 @@ fun BiodataScreen(){
                             expanded = expandedExperience,
                             onExpandedChange = { expandedExperience = it },
                             modifier = Modifier.weight(fieldWeight)
-                        )
+                        ){
+                            OutlinedTextField(
+                                value = experience,
+                                onValueChange = {},
+                                readOnly = true,
+                                placeholder = { Text(stringResource(R.string.hint_experience)) },
+                                trailingIcon = {
+                                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedExperience)
+                                },
+                                singleLine = true,
+                                shape = fieldShape,
+                                colors = fieldColors,
+                                modifier = Modifier
+                                    .menuAnchor()
+                                    .fillMaxWidth()
+                            )
+                            ExposedDropdownMenu(
+                                expanded = expandedExperience,
+                                onDismissRequest = { expandedExperience = false }
+                            ) {
+                                experienceOptions.forEach { option ->
+                                    DropdownMenuItem(
+                                        text = { Text(option) },
+                                        onClick = {
+                                            experience = option
+                                            expandedExperience = false
+                                        }
+                                    )
                     }
                 }
             }
