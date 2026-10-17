@@ -22,4 +22,7 @@
     <string name="hasil_email">Email : %1$s</string>
     <string name="hasil_tgl">Tgl Lahir : %1$s</string>
     <string name="hasil_experience">Experience : %1$s</string>
+    <string name="hasil_skill">Skill : %1$s</string>
+    <string name="hasil_skill_kosong">-</string>
+
 </resources>
