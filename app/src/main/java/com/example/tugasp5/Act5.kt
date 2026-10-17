@@ -17,14 +17,19 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
@@ -32,8 +37,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -55,7 +62,7 @@ import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BiodataScreen(menuAnchor: Modifier.Companion.() -> Unit, fillMaxWidth: Unit.() -> Unit) {
+fun BiodataScreen() {
     var namaDepan by remember { mutableStateOf(String()) }
     var namaBelakang by remember { mutableStateOf(String()) }
     var email by remember { mutableStateOf(String()) }
@@ -87,7 +94,9 @@ fun BiodataScreen(menuAnchor: Modifier.Companion.() -> Unit, fillMaxWidth: Unit.
     val formValid = namaDepan.isNotBlank() &&
             namaBelakang.isNotBlank() &&
             email.isNotBlank() &&
-            tglLahir.isNotBlank()
+            tglLahir.isNotBlank() &&
+            experience.isNotBlank()
+
     val resources = LocalContext.current.resources
     val imageHeightFraction = ResourcesCompat.getFloat(resources, R.dimen.image_height_fraction)
     val cardHeightFraction = ResourcesCompat.getFloat(resources, R.dimen.card_height_fraction)
@@ -113,10 +122,13 @@ fun BiodataScreen(menuAnchor: Modifier.Companion.() -> Unit, fillMaxWidth: Unit.
         uncheckedColor = colorResource(R.color.checkbox_unchecked)
     )
 
-    Scaffold( containerColor = colorResource(R.color.screen_background)){
-            innerPadding ->
+    Scaffold(
+        containerColor = colorResource(R.color.screen_background)
+    ) { innerPadding ->
         Box(
-            modifier = Modifier.fillMaxSize().padding(innerPadding)
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
         ) {
             Image(
                 painter = painterResource(R.drawable.image),
@@ -127,6 +139,7 @@ fun BiodataScreen(menuAnchor: Modifier.Companion.() -> Unit, fillMaxWidth: Unit.
                     .fillMaxHeight(imageHeightFraction)
                     .align(Alignment.TopCenter)
             )
+
             Box(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
@@ -168,6 +181,7 @@ fun BiodataScreen(menuAnchor: Modifier.Companion.() -> Unit, fillMaxWidth: Unit.
                             dimensionResource(R.dimen.section_gap) + dimensionResource(R.dimen.field_gap)
                         )
                     )
+
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.field_gap))
@@ -191,6 +205,7 @@ fun BiodataScreen(menuAnchor: Modifier.Companion.() -> Unit, fillMaxWidth: Unit.
                             modifier = Modifier.weight(fieldWeight)
                         )
                     }
+
                     Spacer(Modifier.height(dimensionResource(R.dimen.section_gap)))
 
                     OutlinedTextField(
@@ -202,6 +217,7 @@ fun BiodataScreen(menuAnchor: Modifier.Companion.() -> Unit, fillMaxWidth: Unit.
                         colors = fieldColors,
                         modifier = Modifier.fillMaxWidth()
                     )
+
                     Spacer(Modifier.height(dimensionResource(R.dimen.section_gap)))
 
                     Row(
@@ -216,7 +232,7 @@ fun BiodataScreen(menuAnchor: Modifier.Companion.() -> Unit, fillMaxWidth: Unit.
                             trailingIcon = {
                                 IconButton(onClick = { showDatePicker = true }) {
                                     Icon(
-                                        painter = painterResource(R.drawable.ic_calendar),
+                                        painter = painterResource(R.drawable.ic_calender),
                                         contentDescription = stringResource(R.string.cd_pilih_tanggal)
                                     )
                                 }
@@ -226,6 +242,7 @@ fun BiodataScreen(menuAnchor: Modifier.Companion.() -> Unit, fillMaxWidth: Unit.
                             colors = fieldColors,
                             modifier = Modifier.weight(fieldWeight)
                         )
+
                         ExposedDropdownMenuBox(
                             expanded = expandedExperience,
                             onExpandedChange = { expandedExperience = it },
@@ -262,6 +279,7 @@ fun BiodataScreen(menuAnchor: Modifier.Companion.() -> Unit, fillMaxWidth: Unit.
                             }
                         }
                     }
+
                     Spacer(Modifier.height(dimensionResource(R.dimen.section_gap)))
 
                     Text(
@@ -309,6 +327,7 @@ fun BiodataScreen(menuAnchor: Modifier.Companion.() -> Unit, fillMaxWidth: Unit.
                             )
                         }
                     }
+
                     Spacer(Modifier.height(dimensionResource(R.dimen.section_gap)))
                     HorizontalDivider(
                         thickness = dimensionResource(R.dimen.divider_tipis),
@@ -335,6 +354,7 @@ fun BiodataScreen(menuAnchor: Modifier.Companion.() -> Unit, fillMaxWidth: Unit.
                             fontWeight = FontWeight.Bold
                         )
                     }
+
                     if (tampilHasil) {
                         Spacer(Modifier.height(dimensionResource(R.dimen.section_gap)))
                         HorizontalDivider(
@@ -354,11 +374,7 @@ fun BiodataScreen(menuAnchor: Modifier.Companion.() -> Unit, fillMaxWidth: Unit.
                         ) {
                             Column(modifier = Modifier.padding(dimensionResource(R.dimen.result_padding))) {
                                 Text(
-                                    text = stringResource(
-                                        R.string.hasil_nama,
-                                        namaDepan,
-                                        namaBelakang
-                                    ),
+                                    text = stringResource(R.string.hasil_nama, namaDepan, namaBelakang),
                                     color = colorResource(R.color.white)
                                 )
                                 Text(
@@ -384,6 +400,7 @@ fun BiodataScreen(menuAnchor: Modifier.Companion.() -> Unit, fillMaxWidth: Unit.
             }
         }
     }
+
     if (showDatePicker) {
         DatePickerDialog(
             onDismissRequest = { showDatePicker = false },
