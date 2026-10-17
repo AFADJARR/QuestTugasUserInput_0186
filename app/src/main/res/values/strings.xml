@@ -15,4 +15,6 @@
     <string name="format_tanggal">dd/MM/yyyy</string>
     <string name="cd_background">Gambar latar</string>
     <string name="cd_pilih_tanggal">Pilih tanggal lahir</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_batal">Batal</string>
 </resources>
