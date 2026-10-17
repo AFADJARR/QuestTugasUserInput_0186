@@ -1,12 +1,15 @@
 package com.example.tugasp5
 
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
@@ -59,5 +62,18 @@ fun BiodataScreen(){
     val cardShape = RoundedCornerShape(
         topStart = dimensionResource(R.dimen.card_corner),
         topEnd = dimensionResource(R.dimen.card_corner)
+    )
+    val fieldColors = OutlinedTextFieldDefaults.colors(
+        focusedBorderColor = colorResource(R.color.purple_title),
+        unfocusedBorderColor = colorResource(R.color.field_border),
+        focusedTextColor = colorResource(R.color.text_primary),
+        unfocusedTextColor = colorResource(R.color.text_primary),
+        focusedContainerColor = colorResource(R.color.white),
+        unfocusedContainerColor = colorResource(R.color.white)
+    )
+
+    val checkboxColors = CheckboxDefaults.colors(
+        checkedColor = colorResource(R.color.checkbox_checked),
+        uncheckedColor = colorResource(R.color.checkbox_unchecked)
     )
 }
