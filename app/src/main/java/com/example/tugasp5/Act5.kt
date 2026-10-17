@@ -2,8 +2,10 @@ package com.example.tugasp5
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,10 +15,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
@@ -252,5 +256,58 @@ fun BiodataScreen(menuAnchor: Modifier.Companion.() -> Unit, fillMaxWidth: Unit.
                 }
             }
         }
+                    Spacer(Modifier.height(dimensionResource(R.dimen.section_gap)))
+
+                    Text(
+                        text = stringResource(R.string.label_skill),
+                        color = colorResource(R.color.text_primary),
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Checkbox(
+                                checked = skillAndroid,
+                                onCheckedChange = { skillAndroid = it },
+                                colors = checkboxColors
+                            )
+                            Text(
+                                text = teksAndroid,
+                                color = colorResource(R.color.text_primary)
+                            )
+                        }
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Checkbox(
+                                checked = skillUiUx,
+                                onCheckedChange = { skillUiUx = it },
+                                colors = checkboxColors
+                            )
+                            Text(
+                                text = teksUiUx,
+                                color = colorResource(R.color.text_primary)
+                            )
+                        }
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Checkbox(
+                                checked = skillWeb,
+                                onCheckedChange = { skillWeb = it },
+                                colors = checkboxColors
+                            )
+                            Text(
+                                text = teksWeb,
+                                color = colorResource(R.color.text_primary)
+                            )
+                        }
+                    }
+                    Spacer(Modifier.height(dimensionResource(R.dimen.section_gap)))
+                    HorizontalDivider(
+                        thickness = dimensionResource(R.dimen.divider_tipis),
+                        color = colorResource(R.color.field_border)
+                    )
+                    Spacer(Modifier.height(dimensionResource(R.dimen.section_gap)))
     }
 }
