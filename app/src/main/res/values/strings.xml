@@ -19,5 +19,5 @@
     <string name="dialog_batal">Batal</string>
 
     <string name="hasil_nama">Nama : %1$s %2$s</string>
-
+    <string name="hasil_email">Email : %1$s</string>
 </resources>
