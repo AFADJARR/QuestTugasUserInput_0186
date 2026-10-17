@@ -1,12 +1,16 @@
 package com.example.tugasp5
 
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
+import androidx.core.content.res.ResourcesCompat
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -44,5 +48,16 @@ fun BiodataScreen(){
     val formValid = namaDepan.isNotBlank() &&
             namaBelakang.isNotBlank() &&
             email.isNotBlank() &&
-            tglLahir.isNotBlank() &&
+            tglLahir.isNotBlank()
+    val resources = LocalContext.current.resources
+    val imageHeightFraction = ResourcesCompat.getFloat(resources, R.dimen.image_height_fraction)
+    val cardHeightFraction = ResourcesCompat.getFloat(resources, R.dimen.card_height_fraction)
+    val fieldWeight = ResourcesCompat.getFloat(resources, R.dimen.field_weight)
+
+    val fieldShape = RoundedCornerShape(dimensionResource(R.dimen.field_corner))
+    val resultShape = RoundedCornerShape(dimensionResource(R.dimen.result_corner))
+    val cardShape = RoundedCornerShape(
+        topStart = dimensionResource(R.dimen.card_corner),
+        topEnd = dimensionResource(R.dimen.card_corner)
+    )
 }
