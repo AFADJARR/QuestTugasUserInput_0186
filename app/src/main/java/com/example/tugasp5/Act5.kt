@@ -15,6 +15,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.DropdownMenuItem
@@ -309,5 +311,25 @@ fun BiodataScreen(menuAnchor: Modifier.Companion.() -> Unit, fillMaxWidth: Unit.
                         color = colorResource(R.color.field_border)
                     )
                     Spacer(Modifier.height(dimensionResource(R.dimen.section_gap)))
+
+                    Button(
+                        onClick = { tampilHasil = true },
+                        enabled = formValid,
+                        shape = RoundedCornerShape(dimensionResource(R.dimen.button_corner)),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = colorResource(R.color.button_enabled),
+                            contentColor = colorResource(R.color.white),
+                            disabledContainerColor = colorResource(R.color.button_disabled),
+                            disabledContentColor = colorResource(R.color.button_text_disabled)
+                        ),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(dimensionResource(R.dimen.button_height))
+                    ){
+                        Text(
+                            text = stringResource(R.string.btn_proceed),
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
     }
 }
