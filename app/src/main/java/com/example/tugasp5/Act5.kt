@@ -125,14 +125,14 @@ fun BiodataScreen(){
                     )
                     .clip(cardShape)
                     .background(colorResource(R.color.white))
-            ){
+            ) {
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
                         .verticalScroll(rememberScrollState())
                         .padding(dimensionResource(R.dimen.card_padding)),
                     horizontalAlignment = Alignment.CenterHorizontally
-                ){
+                ) {
                     Text(
                         text = stringResource(R.string.title_form),
                         color = colorResource(R.color.purple_title),
@@ -153,6 +153,73 @@ fun BiodataScreen(){
                     Spacer(
                         Modifier.height(
                             dimensionResource(R.dimen.section_gap) + dimensionResource(R.dimen.field_gap)
+                        )
+                    )
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.field_gap))
+                    ) {
+                        OutlinedTextField(
+                            value = namaDepan,
+                            onValueChange = { namaDepan = it },
+                            placeholder = { Text(stringResource(R.string.hint_nama_depan)) },
+                            singleLine = true,
+                            shape = fieldShape,
+                            colors = fieldColors,
+                            modifier = Modifier.weight(fieldWeight)
+                        )
+                        OutlinedTextField(
+                            value = namaBelakang,
+                            onValueChange = { namaBelakang = it },
+                            placeholder = { Text(stringResource(R.string.hint_nama_belakang)) },
+                            singleLine = true,
+                            shape = fieldShape,
+                            colors = fieldColors,
+                            modifier = Modifier.weight(fieldWeight)
+                        )
+                    }
+                    Spacer(Modifier.height(dimensionResource(R.dimen.section_gap)))
+
+                    OutlinedTextField(
+                        value = email,
+                        onValueChange = { email = it },
+                        placeholder = { Text(stringResource(R.string.hint_email)) },
+                        singleLine = true,
+                        shape = fieldShape,
+                        colors = fieldColors,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Spacer(Modifier.height(dimensionResource(R.dimen.section_gap)))
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.field_gap))
+                    ) {
+                        OutlinedTextField(
+                            value = tglLahir,
+                            onValueChange = {},
+                            readOnly = true,
+                            placeholder = { Text(stringResource(R.string.hint_tgl_lahir)) },
+                            trailingIcon = {
+                                IconButton(onClick = { showDatePicker = true }) {
+                                    Icon(
+                                        painter = painterResource(R.drawable.ic_calendar),
+                                        contentDescription = stringResource(R.string.cd_pilih_tanggal)
+                                    )
+                                }
+                            },
+                            singleLine = true,
+                            shape = fieldShape,
+                            colors = fieldColors,
+                            modifier = Modifier.weight(fieldWeight)
+                        )
+                        ExposedDropdownMenuBox(
+                            expanded = expandedExperience,
+                            onExpandedChange = { expandedExperience = it },
+                            modifier = Modifier.weight(fieldWeight)
+                        )
+                    }
+                }
             }
         }
     }
